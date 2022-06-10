@@ -1,7 +1,9 @@
 import { FC } from "react";
 
+import Provider from "components/Provider/Provider";
+
 const App: FC = () => {
-  return <div className="bg-red-600">hello</div>;
+  return <Provider>hello</Provider>;
 };
 
 export default App;
