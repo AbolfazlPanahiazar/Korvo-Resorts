@@ -1,24 +1,21 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
 import { BsPlusLg } from "react-icons/bs";
 
-export const ResortCard: FC = () => {
+import { PageContainer } from "components/common";
+
+const ResortDetails: FC = () => {
   return (
-    <Link to="/resorts/ad">
-      <div className="overflow-hidden rounded-md shadow-lg">
-        <div className="w-full">
-          <img
-            className="w-full"
-            src="https://media.cntraveler.com/photos/5f68161d68f371240312a111/master/w_400%2Cc_limit/Anantara-Al-Jabal-Al-Akhdar-Resort.jpg"
-            alt="asdf"
-          />
-        </div>
-        <div className="p-2 flex flex-col">
-          <span className="font-bold">
-            Anantara Al Jabal Al Akhdar Resort — Nizwa, Oman
-          </span>
-          <span className="text-gray-600 mt-1">price: 540$</span>
-          <p className="text-sm text-gray-600 text-justify mt-1">
+    <PageContainer>
+      <div className="p-3">
+        <h1 className="font-bold">Resort Details</h1>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-sky-900 text-white p-5 rounded-md">
+        <div className="max-w-2xl">
+          <h1 className="font-bold text-xl mb-2">
+            Little Palm Island Resort & Spa — Little Torch Key, Florida
+          </h1>
+          <span className="text-gray-300">price: 525$</span>
+          <p className="text-md text-gray-300 text-justify mt-2">
             {`Set in the sunburnt Al-Hajar mountains, on the rim of the Arabian
           Peninsula’s most outrageously beautiful canyon, is Anantara Al Jabal
           Al Akhdar Resort—the region’s most ambitious wilderness hotel. The
@@ -32,16 +29,22 @@ export const ResortCard: FC = () => {
           energizing hammam rituals and fragrant frankincense oils. It’s a bold,
           almost transcendental experiment in off-the-map tourism, and at the
           vanguard of a growing number of Middle Eastern hotels opening in
-          unexpected and wonderfully extreme locations.`.substring(0, 200) +
-              "..."}
+          unexpected and wonderfully extreme locations.`}
           </p>
-          <div className="mt-1 flex justify-end">
-            <button className="bg-sky-800 text-white w-10 h-10 rounded flex justify-center items-center">
-              <BsPlusLg size={15} />
-            </button>
-          </div>
+          <button className="text-white bg-green-600 flex items-center p-2 w-full justify-center rounded mt-2">
+            Add to Bucket <BsPlusLg size={18} className="ml-2" />
+          </button>
+        </div>
+        <div>
+          <img
+            className="w-full rounded-md"
+            src="https://media.cntraveler.com/photos/5f67bd59978ff785b2501615/master/w_400%2Cc_limit/taj-exotica-goa.jpg"
+            alt="asdf"
+          />
         </div>
       </div>
-    </Link>
+    </PageContainer>
   );
 };
+
+export default ResortDetails;

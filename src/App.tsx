@@ -5,6 +5,7 @@ import Provider from "components/Provider/Provider";
 import { ROUTES } from "const";
 
 const ResortsList = lazy(() => import("pages/ResortsList/ResortsList"));
+const ResortDetails = lazy(() => import("pages/ResortDetails/ResortDetails"));
 
 const App: FC = () => {
   return (
@@ -12,10 +13,7 @@ const App: FC = () => {
       <Suspense fallback={<span>loading page</span>}>
         <Routes>
           <Route path={ROUTES.resortsList} element={<ResortsList />} />
-          <Route
-            path={ROUTES.resortDetails}
-            element={<h1>single resport</h1>}
-          />
+          <Route path={ROUTES.resortDetails} element={<ResortDetails />} />
           <Route path={ROUTES.bucket} element={<h1>bucket</h1>} />
           <Route path="*" element={<h1>404</h1>} />
         </Routes>
