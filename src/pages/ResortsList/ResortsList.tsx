@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from "react";
 
+import data from "const/data.json";
 import { PageContainer } from "components/common";
 import { ResortCard, Paginator } from "components/ResortsListPage";
 import { IResort } from "types";
-import data from "const/data.json";
 
 const ResortsList: FC = () => {
   const [currentSort, setCurrentSort] = useState<"title" | "price">("title");

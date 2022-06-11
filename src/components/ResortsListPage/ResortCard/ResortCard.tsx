@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from "react";
+import { FC, MouseEventHandler, useState } from "react";
 import { Link } from "react-router-dom";
 import { BsPlusLg } from "react-icons/bs";
 
@@ -14,7 +14,7 @@ export const ResortCard: FC<IResortCardProps> = ({ resort }) => {
   > = () => {};
 
   return (
-    <Link to="/resorts/ad">
+    <Link to={`/resorts/${resort.id}`}>
       <div className="overflow-hidden rounded-md shadow-lg h-full flex flex-col">
         <div className="w-full">
           <img className="w-full" src={resort.imageUrl} alt={resort.title} />
