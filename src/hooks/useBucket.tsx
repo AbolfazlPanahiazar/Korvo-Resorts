@@ -1,5 +1,14 @@
-import { useState, createContext, useContext, ReactNode, FC } from "react";
+import {
+  useState,
+  createContext,
+  useContext,
+  ReactNode,
+  FC,
+  useEffect,
+} from "react";
+import { toast } from "react-toastify";
 
+import { CLIENT_STORAGE_KEY } from "const/env";
 import { IResort } from "types";
 
 interface IBucketContext {
@@ -21,18 +30,38 @@ interface IBucketContextProviderProps {
 const BucketContextProvider: FC<IBucketContextProviderProps> = ({
   children,
 }) => {
-  const [bucket, setBucket] = useState<IResort[]>([]);
+  const getBucket = (): IResort[] => {
+    const bucketString = localStorage.getItem(CLIENT_STORAGE_KEY);
+    if (bucketString) {
+      const extracedBucket: IResort[] = JSON.parse(bucketString);
+      return extracedBucket;
+    }
+    return [];
+  };
+
+  const [bucket, setBucket] = useState<IResort[]>(getBucket());
 
   const addToBucket = (resort: IResort) => {
     if (bucket.find((r) => r.id === resort.id)) {
+      toast.error("Resort already in bucket");
       return;
     }
     setBucket([...bucket, resort]);
+    toast.success("Resort added to bucket");
   };
 
   const removeFromBucket = (id: number) => {
+    if (!bucket.find((r) => r.id === id)) {
+      toast.error("Resort not in bucket");
+      return;
+    }
     setBucket((prevBucket) => prevBucket.filter((resort) => resort.id !== id));
+    toast.success("Resort removed from bucket");
   };
+
+  useEffect(() => {
+    localStorage.setItem(CLIENT_STORAGE_KEY, JSON.stringify(bucket));
+  }, [bucket]);
 
   return (
     <bucketContext.Provider
