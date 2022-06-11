@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { BsPlusLg } from "react-icons/bs";
 
 import { PageContainer } from "components/common";
 import { BucketItem } from "components/BucketPage/BucketItem/BucketItem";

@@ -19,7 +19,7 @@ export const Paginator: FC<IProps> = ({
       pages.push(i);
     }
     setPages(pages);
-  }, []);
+  }, [currentPage, pagesCount, setCurrentPage]);
 
   return (
     <nav>

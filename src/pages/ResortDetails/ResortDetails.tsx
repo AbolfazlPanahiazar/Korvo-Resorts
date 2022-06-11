@@ -1,23 +1,32 @@
-import { FC, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { FC, MouseEventHandler, useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { BsPlusLg } from "react-icons/bs";
 
+import { useBucket } from "hooks";
 import data from "const/data.json";
 import { PageContainer } from "components/common";
 import { IResort } from "types";
 
 const ResortDetails: FC = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
+  const { addResort } = useBucket();
   const [resort, setResort] = useState<IResort | undefined>();
 
   useEffect(() => {
-    if (id) {
+    if (id && !isNaN(Number(id))) {
       const newResort = data.find((resort) => resort.id === +id);
       setResort(newResort);
     } else {
-      setResort(undefined);
+      navigate("/404");
     }
-  }, [id]);
+  }, [id, navigate]);
+
+  const addToBucketHandler: MouseEventHandler<HTMLButtonElement> = () => {
+    if (resort) {
+      addResort(resort);
+    }
+  };
 
   return (
     <PageContainer>
@@ -31,7 +40,10 @@ const ResortDetails: FC = () => {
           <p className="text-md text-gray-300 text-justify mt-2">
             {resort?.description}
           </p>
-          <button className="text-white bg-green-600 flex items-center p-2 w-full justify-center rounded mt-2">
+          <button
+            onClick={addToBucketHandler}
+            className="text-white bg-green-600 flex items-center p-2 w-full justify-center rounded mt-2"
+          >
             Add to Bucket <BsPlusLg size={18} className="ml-2" />
           </button>
         </div>

@@ -11,12 +11,25 @@ const Bucket = lazy(() => import("pages/Bucket/Bucket"));
 const App: FC = () => {
   return (
     <Provider>
-      <Suspense fallback={<span>loading page</span>}>
+      <Suspense
+        fallback={
+          <div className="w-screen h-screen flex justify-center items-center text-6xl">
+            LOADING
+          </div>
+        }
+      >
         <Routes>
           <Route path={ROUTES.resortsList} element={<ResortsList />} />
           <Route path={ROUTES.resortDetails} element={<ResortDetails />} />
           <Route path={ROUTES.bucket} element={<Bucket />} />
-          <Route path="*" element={<h1>404</h1>} />
+          <Route
+            path="*"
+            element={
+              <div className="w-screen h-screen flex justify-center items-center text-6xl">
+                404 NOT FOUND
+              </div>
+            }
+          />
         </Routes>
       </Suspense>
     </Provider>
