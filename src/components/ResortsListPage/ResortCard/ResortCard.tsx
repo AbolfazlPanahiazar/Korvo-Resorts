@@ -21,11 +21,11 @@ export const ResortCard: FC<IResortCardProps> = ({ resort }) => {
         </div>
         <div className="p-2 flex flex-col flex-grow">
           <span className="font-bold">{resort.title}</span>
-          <span className="text-gray-600 mt-1">price: 540$</span>
+          <span className="text-gray-600 mt-1">price: {resort.price}</span>
           <p className="text-sm text-gray-600 text-justify mt-1 flex-grow">
             {resort.description.substring(0, 200) + "..."}
           </p>
-          <div className="mt-1 flex justify-end"> 
+          <div className="mt-1 flex justify-end">
             <button
               onClick={addToBucketClickHandler}
               className="bg-sky-800 text-white w-10 h-10 rounded flex justify-center items-center"

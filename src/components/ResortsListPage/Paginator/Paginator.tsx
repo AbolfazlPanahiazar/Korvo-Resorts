@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 interface IProps {
   currentPage: number;
@@ -11,6 +11,16 @@ export const Paginator: FC<IProps> = ({
   pagesCount,
   setCurrentPage,
 }) => {
+  const [pages, setPages] = useState<number[]>([]);
+
+  useEffect(() => {
+    const pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i);
+    }
+    setPages(pages);
+  }, []);
+
   return (
     <nav>
       <ul className="inline-flex -space-x-px">
@@ -22,7 +32,7 @@ export const Paginator: FC<IProps> = ({
             Previous
           </span>
         </li>
-        {[1, 2, 3].map((page) =>
+        {pages.map((page) =>
           currentPage === page ? (
             <ActivePage page={page} />
           ) : (
